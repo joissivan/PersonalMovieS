@@ -21,6 +21,7 @@ struct Movie {
         self.thumbnailImageURL = thumbnailImageURL
         self.largeImageURL = largeImageURL
         self.itemURL = itemURL
+        //self.artistURL = artistURL
     }
     
     static func moviesWithJSON(results: NSArray) -> [Movie] {
@@ -33,30 +34,31 @@ struct Movie {
             for result in results {
                 
                 // title
-                var title = result["title"] as? String
+                let title = result["title"] as? String ?? ""
                 
                 // rating
-                if var ratingDictionary = result["rating"] as? NSDictionary,
-                    average = ratingDictionary["average"] as? Float {
-                        let rating = "\(String(average))分" ?? ""
+                var rating: String = ""
+                if let ratingDictionary = result["rating"] as? NSDictionary,
+                    let average = ratingDictionary["average"] as? Float {
+                        rating = "\(String(average))分"
                 }
                 
                 // images
-                if var images = result["images"] as? NSDictionary {
-                    if var smallImageURL = images["small"] as? String {
-                        let thumbnailImageURL = smallImageURL ?? ""
-                    }
-                    if var mediumImageURL = images["medium"] as? String {
-                        let largeImageURL = mediumImageURL ?? ""
-                    }
+                var thumbnailImageURL: String = ""
+                var largeImageURL: String = ""
+                if let images = result["images"] as? NSDictionary {
+                    thumbnailImageURL = images["small"] as! String
+                    largeImageURL = images["medium"] as! String
                 }
-                
+
                 // itmeURL
-                if var id = result["id"] as? String {
-                    var itemURL = "http://api.douban.com/v2/movie/subject/\(id)"
+                var itemURL: String = ""
+                if let movieId = result["id"] as? String {
+                    itemURL = "http://api.douban.com/v2/movie/subject/\(movieId)"
                 }
+
+                let newMovie = Movie(title: title, rating: rating, thumbnailImageURL: thumbnailImageURL, largeImageURL: largeImageURL, itemURL: itemURL)
                 
-                var newMovie = Movie(title: title!, rating: rating, thumbnailImageURL: thumbnailImageURL, largeImageURL: largeImageURL, itemURL: itemURL!)
                 movies.append(newMovie)
             }
         }

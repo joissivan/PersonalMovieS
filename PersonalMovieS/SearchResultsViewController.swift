@@ -21,6 +21,7 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         api = APIController(delegate: self)
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         api.searchDoubanFor("007")
     }
     
@@ -84,17 +85,13 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Get the row data for the selected row
-        if let rowData = self.tableData[indexPath.row] as? NSDictionary,
-            
-            name = rowData["title"] as? String,
-            
-            year = rowData["year"] as? String {
-            
-                let alert = UIAlertController(title: name, message: year + "年", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-        }
+        let movie = self.movies[indexPath.row]
+        
+        let alert = UIAlertController(title: movie.title, message: movie.rating, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
+
     
 }
 

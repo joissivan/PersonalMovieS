@@ -10,10 +10,10 @@ import UIKit
 
 class SearchResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, APIControllerProtocol {
 
-    var tableData = []
     let kCellIdentifier: String = "SearchResultCell"
     var imageCache = [String:UIImage]()
     var api : APIController!
+    var movies = [Movie]()
     
     @IBOutlet weak var appsTableView: UITableView!
     
@@ -30,64 +30,55 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData.count
+        return movies.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier, forIndexPath: indexPath)
+        let movie = self.movies[indexPath.row]
         
         // Douban API
-        if let rowData: NSDictionary = self.tableData[indexPath.row] as? NSDictionary,
-            images = rowData["images"] as? NSDictionary,
-            urlString = images["small"] as? String,
-            imgURL = NSURL(string: urlString),
-
-            rating = rowData["rating"] as? NSDictionary,
-            formattedRating = rating["average"] as? Float,
+        cell.detailTextLabel?.text = movie.rating
+        cell.textLabel?.text = movie.title
         
-
-            trackName = rowData["title"] as? String {
-                
-                cell.detailTextLabel?.text = String(formattedRating)
-                cell.textLabel?.text = trackName
-                
-                //cell.imageView?.image = UIImage(data: imgData)
-                cell.imageView?.image = UIImage(named: "Blank")
-                
-                // If this image is already cached, don't re-download
-                if let img = imageCache[urlString] {
-                    cell.imageView?.image = img
-                }
-                else {
-                    let session = NSURLSession.sharedSession()
-                    let request = NSURLRequest(URL: imgURL)
-                    let dataTask = session.dataTaskWithRequest(request) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
-                        if error == nil {
-                            // Convert the downloaded data in to a UIImage object
-                            let image = UIImage(data: data!)
-                            // Store the image in to our cache
-                            self.imageCache[urlString] = image
-                            // Update the cell
-                            dispatch_async(dispatch_get_main_queue(), {
-                                if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) {
-                                    cellToUpdate.imageView?.image = image
-                                }
-                            })
-                        } else {
-                            print("Error: \(error)")
-                        }
-                    }
-                    dataTask.resume()
-                }
-                
+        cell.imageView?.image = UIImage(named: "Blank")
+        let thumbnailURLString = movie.thumbnailImageURL
+        let thumbnailURL = NSURL(string: thumbnailURLString)!
+        
+        // If this image is already cached, don't re-download
+        if let img = imageCache[thumbnailURLString] {
+            cell.imageView?.image = img
         }
+        else {
+            let session = NSURLSession.sharedSession()
+            let request = NSURLRequest(URL: thumbnailURL)
+            let dataTask = session.dataTaskWithRequest(request) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+                if error == nil {
+                    // Convert the downloaded data in to a UIImage object
+                    let image = UIImage(data: data!)
+                    // Store the image in to our cache
+                    self.imageCache[thumbnailURLString] = image
+                    // Update the cell
+                    dispatch_async(dispatch_get_main_queue(), {
+                        if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) {
+                            cellToUpdate.imageView?.image = image
+                        }
+                    })
+                } else {
+                    print("Error: \(error)")
+                }
+            }
+            dataTask.resume()
+        }
+                
         return cell
     }
     
     func didReceiveAPIResults(results: NSArray) {
         dispatch_async(dispatch_get_main_queue(), {
-            self.tableData = results
+            self.movies = Movie.moviesWithJSON(results)
             self.appsTableView!.reloadData()
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         })
     }
     

@@ -83,16 +83,22 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         })
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    /*func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Get the row data for the selected row
         let movie = self.movies[indexPath.row]
         
         let alert = UIAlertController(title: movie.title, message: movie.rating, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
-    }
+    }*/
 
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let detailsViewController: DetailsViewController = segue.destinationViewController as? DetailsViewController {
+            let movieIndex = appsTableView!.indexPathForSelectedRow!.row
+            let selectedMovie = self.movies[movieIndex]
+            detailsViewController.movie = selectedMovie
+        }
+    }
     
 }
 

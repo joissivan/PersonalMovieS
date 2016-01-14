@@ -10,6 +10,8 @@ import UIKit
 
 class DetailsViewController: UIViewController {
     
+    @IBOutlet weak var movieCover: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     var movie: Movie?
     
     required init?(coder aDecoder: NSCoder) {
@@ -18,5 +20,7 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleLabel.text = self.movie?.title
+        movieCover.image = UIImage(data: NSData(contentsOfURL: NSURL(string: self.movie!.largeImageURL)!)!)
     }
 }

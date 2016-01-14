@@ -21,7 +21,6 @@ struct Movie {
         self.thumbnailImageURL = thumbnailImageURL
         self.largeImageURL = largeImageURL
         self.itemURL = itemURL
-        //self.artistURL = artistURL
     }
     
     static func moviesWithJSON(results: NSArray) -> [Movie] {

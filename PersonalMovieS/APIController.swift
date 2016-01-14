@@ -23,36 +23,37 @@ class APIController {
         // Now escape anything else that isn't URL-friendly
         if let escapedSearchTerm = itunesSearchTerm.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()) {
             let urlPath = "https://api.douban.com/v2/movie/search?q=\(escapedSearchTerm)"
-            let url = NSURL(string: urlPath)
-            let session = NSURLSession.sharedSession()
-            let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
-                print("Task completed")
-                do {
-                    if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
-                        let success = json["total"] as? Int                                  // Okay, the `json` is here, let's get the value for 'success' out of it
-                        print("Success: \(success)")
-                        if let results: NSArray = json["subjects"] as? NSArray {
-                            self.delegate.didReceiveAPIResults(results)
-                        }
-                    } else {
-                        let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)    // No error thrown, but not NSDictionary
-                        print("Error could not parse JSON: \(jsonStr)")
-                    }
-                } catch let parseError {
-                    print(parseError)                                                          // Log the error thrown by `JSONObjectWithData`
-                    let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                    print("Error could not parse JSON: '\(jsonStr)'")
-                }
-                
-                
-            })
-            
-            // The task is just an object with all these properties set
-            // In order to actually make the web request, we need to "resume"
-            task.resume()
+            get(urlPath)
         }
     }
 
+    func get(path: String) {
+        let url = NSURL(string: path)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
+            print("Task completed")
+            do {
+                if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
+                    let success = json["total"] as? Int                                  // Okay, the `json` is here, let's get the value for 'success' out of it
+                    print("Success: \(success)")
+                    if let results: NSArray = json["subjects"] as? NSArray {
+                        self.delegate.didReceiveAPIResults(results)
+                    }
+                } else {
+                    let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)    // No error thrown, but not NSDictionary
+                    print("Error could not parse JSON: \(jsonStr)")
+                }
+            } catch let parseError {
+                print(parseError)                                                          // Log the error thrown by `JSONObjectWithData`
+                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                print("Error could not parse JSON: '\(jsonStr)'")
+            }
+        })
+        
+        // The task is just an object with all these properties set
+        // In order to actually make the web request, we need to "resume"
+        task.resume()
+    }
 
 }
 

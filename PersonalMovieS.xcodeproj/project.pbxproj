@@ -17,6 +17,7 @@
 		973778931C43B5A6002DE192 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973778921C43B5A6002DE192 /* APIController.swift */; };
 		973958DE1C452A4B00FAC570 /* Blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 973958DD1C452A4B00FAC570 /* Blank.png */; };
 		973958E21C46409200FAC570 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973958E11C46409200FAC570 /* Movie.swift */; };
+		973958E41C4758F100FAC570 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973958E31C4758F100FAC570 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		973778921C43B5A6002DE192 /* APIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
 		973958DD1C452A4B00FAC570 /* Blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blank.png; sourceTree = "<group>"; };
 		973958E11C46409200FAC570 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		973958E31C4758F100FAC570 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				973778701C3FA04F002DE192 /* Info.plist */,
 				973778921C43B5A6002DE192 /* APIController.swift */,
 				973958E11C46409200FAC570 /* Movie.swift */,
+				973958E31C4758F100FAC570 /* DetailsViewController.swift */,
 			);
 			path = PersonalMovieS;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				973778651C3FA04F002DE192 /* AppDelegate.swift in Sources */,
 				973778931C43B5A6002DE192 /* APIController.swift in Sources */,
 				973958E21C46409200FAC570 /* Movie.swift in Sources */,
+				973958E41C4758F100FAC570 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -48,7 +48,7 @@ struct Movie {
                 var largeImageURL: String = ""
                 if let images = result["images"] as? NSDictionary {
                     thumbnailImageURL = images["small"] as! String
-                    largeImageURL = images["medium"] as! String
+                    largeImageURL = images["large"] as! String
                 }
 
                 // itmeURL

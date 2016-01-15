@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, APIControllerProtocol {
+class SearchResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, APIControllerProtocol, UISearchBarDelegate {
 
     let kCellIdentifier: String = "SearchResultCell"
     var imageCache = [String:UIImage]()
@@ -16,13 +16,13 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     var movies = [Movie]()
     
     @IBOutlet weak var appsTableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         api = APIController(delegate: self)
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        api.searchDoubanFor("007")
+        searchBar.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -105,6 +105,12 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         UIView.animateWithDuration(0.25, animations: {
             cell.layer.transform = CATransform3DMakeScale(1,1,1)
         })
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        let searchText: String = searchBar.text ?? ""
+        api.searchDoubanFor(searchText)
     }
     
 }

@@ -13,6 +13,8 @@ class DetailsViewController: UIViewController, APIControllerProtocol {
     @IBOutlet weak var movieCover: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var summaryText: UITextView!
+    @IBOutlet weak var editableTitleText: UITextView!
+
     
     lazy var api : APIController = APIController(delegate: self)
     
@@ -34,7 +36,9 @@ class DetailsViewController: UIViewController, APIControllerProtocol {
         
         // movie summary
         api.lookupSummary(self.movie!.id)
-        //summaryText.editable = false
+        
+        // editable movie title
+        //editableTitleText.editable = true
         
     }
     
@@ -42,6 +46,7 @@ class DetailsViewController: UIViewController, APIControllerProtocol {
         dispatch_async(dispatch_get_main_queue(), {
             self.review = Review.reviewWithJSON(results)
             self.summaryText.text = self.review?.summary
+            self.summaryText.editable = false
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         })
     }

@@ -108,6 +108,7 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         let searchText: String = searchBar.text ?? ""
         api.searchDoubanFor(searchText)

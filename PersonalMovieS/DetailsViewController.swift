@@ -30,6 +30,7 @@ class DetailsViewController: UIViewController, APIControllerProtocol {
         
         // title
         titleLabel.text = self.movie?.title
+        titleLabel.textColor = UIColor.brownColor()
         
         // movie cover
         movieCover.image = UIImage(data: NSData(contentsOfURL: NSURL(string: self.movie!.largeImageURL)!)!)

@@ -8,11 +8,16 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController {
+class DetailsViewController: UIViewController, APIControllerProtocol {
     
     @IBOutlet weak var movieCover: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var summaryText: UITextView!
+    
+    lazy var api : APIController = APIController(delegate: self)
+    
     var movie: Movie?
+    var review: Review?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -20,7 +25,25 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // title
         titleLabel.text = self.movie?.title
+        
+        // movie cover
         movieCover.image = UIImage(data: NSData(contentsOfURL: NSURL(string: self.movie!.largeImageURL)!)!)
+        
+        // movie summary
+        api.lookupSummary(self.movie!.id)
+        //summaryText.editable = false
+        
     }
+    
+    func didReceiveAPIResults(results: NSArray) {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.review = Review.reviewWithJSON(results)
+            self.summaryText.text = self.review?.summary
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        })
+    }
+    
 }

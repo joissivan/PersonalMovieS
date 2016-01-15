@@ -9,18 +9,18 @@
 import Foundation
 
 struct Movie {
+    let id: String
     let title: String
     let rating: String
     let thumbnailImageURL: String
     let largeImageURL: String
-    let itemURL: String
     
-    init(title: String, rating: String, thumbnailImageURL: String, largeImageURL: String, itemURL: String) {
+    init(id: String, title: String, rating: String, thumbnailImageURL: String, largeImageURL: String) {
+        self.id = id
         self.title = title
         self.rating = rating
         self.thumbnailImageURL = thumbnailImageURL
         self.largeImageURL = largeImageURL
-        self.itemURL = itemURL
     }
     
     static func moviesWithJSON(results: NSArray) -> [Movie] {
@@ -31,6 +31,9 @@ struct Movie {
         if results.count>0 {
             
             for result in results {
+                
+                // id
+                let id = result["id"] as? String ?? ""
                 
                 // title
                 let title = result["title"] as? String ?? ""
@@ -50,13 +53,7 @@ struct Movie {
                     largeImageURL = images["large"] as! String
                 }
 
-                // itmeURL
-                var itemURL: String = ""
-                if let movieId = result["id"] as? String {
-                    itemURL = "http://api.douban.com/v2/movie/subject/\(movieId)"
-                }
-
-                let newMovie = Movie(title: title, rating: rating, thumbnailImageURL: thumbnailImageURL, largeImageURL: largeImageURL, itemURL: itemURL)
+                let newMovie = Movie(id: id, title: title, rating: rating, thumbnailImageURL: thumbnailImageURL, largeImageURL: largeImageURL)
                 
                 movies.append(newMovie)
             }

@@ -26,6 +26,10 @@ class APIController {
             get(urlPath)
         }
     }
+    
+    func lookupSummary(id: String) {
+        getDetail("https://api.douban.com/v2/movie/subject/\(id)")
+    }
 
     func get(path: String) {
         let url = NSURL(string: path)
@@ -54,6 +58,32 @@ class APIController {
         // In order to actually make the web request, we need to "resume"
         task.resume()
     }
+    
+    func getDetail(path: String) {
+        let url = NSURL(string: path)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
+            print("Task completed")
+            do {
+                if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
+                    let detailArray = [json]
+                    self.delegate.didReceiveAPIResults(detailArray)
+                } else {
+                    let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)    // No error thrown, but not NSDictionary
+                    print("Error could not parse JSON: \(jsonStr)")
+                }
+            } catch let parseError {
+                print(parseError)                                                          // Log the error thrown by `JSONObjectWithData`
+                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                print("Error could not parse JSON: '\(jsonStr)'")
+            }
+        })
+        
+        // The task is just an object with all these properties set
+        // In order to actually make the web request, we need to "resume"
+        task.resume()
+    }
+
 
 }
 

@@ -42,9 +42,11 @@ class DetailsViewController: UIViewController, APIControllerProtocol {
         
         // editable movie rating
         ratingTextField.text = self.movie?.rating
+        ratingTextField.textColor = UIColor.brownColor()
 
         // editable movie year
         yearTextField.text = self.movie?.year
+        yearTextField.textColor = UIColor.brownColor()
         
         // movie summary
         api.lookupSummary(self.movie!.id)

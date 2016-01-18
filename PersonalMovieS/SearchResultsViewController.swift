@@ -39,9 +39,13 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         let movie = self.movies[indexPath.row]
         
         // Douban API
-        cell.detailTextLabel?.text = movie.rating
+        // title
         cell.textLabel?.text = movie.title
         
+        // rating
+        cell.detailTextLabel?.text = movie.rating
+        
+        // image
         cell.imageView?.image = UIImage(named: "Blank")
         let thumbnailURLString = movie.thumbnailImageURL
         let thumbnailURL = NSURL(string: thumbnailURLString)!

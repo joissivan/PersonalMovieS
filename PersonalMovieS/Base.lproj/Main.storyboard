@@ -90,27 +90,33 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dyu-BM-HL4">
                                 <rect key="frame" x="8" y="72" width="100" height="150"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7b5-e1-Znj">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7b5-e1-Znj">
                                 <rect key="frame" x="116" y="72" width="199" height="26"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="加载简介......" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qxC-rW-ppk">
-                                <rect key="frame" x="8" y="236" width="307" height="324"/>
+                                <rect key="frame" x="8" y="236" width="307" height="321"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2kJ-0n-t8o">
-                                <rect key="frame" x="235" y="169" width="80" height="53"/>
+                                <rect key="frame" x="263" y="175" width="52" height="53"/>
                                 <state key="normal" title="Download"/>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="修改电影名称" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qo1-zT-Ccd">
-                                <rect key="frame" x="116" y="106" width="199" height="32"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1cM-WK-7bg">
+                                <rect key="frame" x="116" y="106" width="109" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="可修改下载名称" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5U-Vl-rOn">
+                                <rect key="frame" x="227" y="112" width="88" height="24"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -118,7 +124,7 @@
                     </view>
                     <connections>
                         <outlet property="downloadButton" destination="2kJ-0n-t8o" id="hZv-lz-6pd"/>
-                        <outlet property="editableTitleText" destination="qo1-zT-Ccd" id="Zab-4A-fAN"/>
+                        <outlet property="editableTextField" destination="1cM-WK-7bg" id="OSJ-8Q-oIS"/>
                         <outlet property="movieCover" destination="Dyu-BM-HL4" id="ThW-8d-JCa"/>
                         <outlet property="summaryText" destination="qxC-rW-ppk" id="JyP-4u-g9E"/>
                         <outlet property="titleLabel" destination="7b5-e1-Znj" id="aAu-hC-efg"/>

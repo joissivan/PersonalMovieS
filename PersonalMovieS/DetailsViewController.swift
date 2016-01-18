@@ -12,8 +12,8 @@ class DetailsViewController: UIViewController, APIControllerProtocol {
     
     @IBOutlet weak var movieCover: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var editableTextField: UITextField!
     @IBOutlet weak var summaryText: UITextView!
-    @IBOutlet weak var editableTitleText: UITextView!
     @IBOutlet weak var downloadButton: UIButton!
 
     lazy var api : APIController = APIController(delegate: self)
@@ -39,7 +39,7 @@ class DetailsViewController: UIViewController, APIControllerProtocol {
         api.lookupSummary(self.movie!.id)
         
         // editable movie title
-        //editableTitleText.editable = true
+        editableTextField.text = self.movie?.title
         
         // download button
         downloadButton.addTarget(self,action:Selector("tapped"),forControlEvents:.TouchUpInside)
@@ -57,14 +57,15 @@ class DetailsViewController: UIViewController, APIControllerProtocol {
     
     func tapped(){
         // Now escape anything else that isn't URL-friendly
-        if let downloadName = editableTitleText.text.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()) {
+        let movieTitle = editableTextField.text!
+        if let downloadName = movieTitle.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()) {
             
-            let url = NSURL(string: "http://192.168.3.107:8080/index.php?op=insert&keyword=" + downloadName)
+            let url = NSURL(string: "http://10.48.72.48:8080/index.php?op=insert&keyword=" + downloadName)
             let session = NSURLSession.sharedSession()
             let task = session.dataTaskWithURL(url as NSURL!)
             task.resume()
             
-            let alert = UIAlertController(title: "开始搜索“" + editableTitleText.text + "”的下载资源", message: "祝你好运", preferredStyle: .Alert)
+            let alert = UIAlertController(title: "开始搜索“" + movieTitle + "”的下载资源", message: "祝你好运", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }

@@ -14,13 +14,15 @@ struct Movie {
     let rating: String
     let thumbnailImageURL: String
     let largeImageURL: String
+    let year: String
     
-    init(id: String, title: String, rating: String, thumbnailImageURL: String, largeImageURL: String) {
+    init(id: String, title: String, rating: String, thumbnailImageURL: String, largeImageURL: String, year: String) {
         self.id = id
         self.title = title
         self.rating = rating
         self.thumbnailImageURL = thumbnailImageURL
         self.largeImageURL = largeImageURL
+        self.year = year
     }
     
     static func moviesWithJSON(results: NSArray) -> [Movie] {
@@ -52,8 +54,11 @@ struct Movie {
                     thumbnailImageURL = images["small"] as! String
                     largeImageURL = images["large"] as! String
                 }
+                
+                // year
+                let year = result["year"] as? String ?? ""
 
-                let newMovie = Movie(id: id, title: title, rating: rating, thumbnailImageURL: thumbnailImageURL, largeImageURL: largeImageURL)
+                let newMovie = Movie(id: id, title: title, rating: rating, thumbnailImageURL: thumbnailImageURL, largeImageURL: largeImageURL, year: year)
                 
                 movies.append(newMovie)
             }

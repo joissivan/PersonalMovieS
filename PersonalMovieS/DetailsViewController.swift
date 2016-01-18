@@ -14,8 +14,8 @@ class DetailsViewController: UIViewController, APIControllerProtocol {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var summaryText: UITextView!
     @IBOutlet weak var editableTitleText: UITextView!
+    @IBOutlet weak var downloadButton: UIButton!
 
-    
     lazy var api : APIController = APIController(delegate: self)
     
     var movie: Movie?
@@ -41,6 +41,9 @@ class DetailsViewController: UIViewController, APIControllerProtocol {
         // editable movie title
         //editableTitleText.editable = true
         
+        // download button
+        downloadButton.addTarget(self,action:Selector("tapped"),forControlEvents:.TouchUpInside)
+        
     }
     
     func didReceiveAPIResults(results: NSArray) {
@@ -50,6 +53,21 @@ class DetailsViewController: UIViewController, APIControllerProtocol {
             self.summaryText.editable = false
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         })
+    }
+    
+    func tapped(){
+        // Now escape anything else that isn't URL-friendly
+        if let downloadName = editableTitleText.text.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()) {
+            
+            let url = NSURL(string: "http://192.168.3.107:8080/index.php?op=insert&keyword=" + downloadName)
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithURL(url as NSURL!)
+            task.resume()
+            
+            let alert = UIAlertController(title: "开始搜索“" + editableTitleText.text + "”的下载资源", message: "祝你好运", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
 }

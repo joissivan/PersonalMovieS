@@ -71,7 +71,14 @@ class DetailsViewController: UIViewController, APIControllerProtocol {
         let movieTitle = editableTextField.text!
         if let downloadName = movieTitle.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()) {
             
-            let url = NSURL(string: "http://10.48.72.48:8080/index.php?op=insert&keyword=" + downloadName)
+            // renew ip address
+            let userDefault = NSUserDefaults.standardUserDefaults()
+            userDefault.setObject("10.48.72.48", forKey: "IPAddress")
+            
+            // load ip address
+            let ipAddress = userDefault.objectForKey("IPAddress") as? String ?? "10.48.72.4811"
+            
+            let url = NSURL(string: "http://" + ipAddress + ":8080/index.php?op=insert&keyword=" + downloadName)
             let session = NSURLSession.sharedSession()
             let task = session.dataTaskWithURL(url as NSURL!)
             task.resume()

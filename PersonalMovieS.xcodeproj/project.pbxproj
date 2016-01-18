@@ -19,6 +19,7 @@
 		973958E21C46409200FAC570 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973958E11C46409200FAC570 /* Movie.swift */; };
 		973958E41C4758F100FAC570 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973958E31C4758F100FAC570 /* DetailsViewController.swift */; };
 		979D9A7A1C489E8500EAE98D /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D9A791C489E8500EAE98D /* Review.swift */; };
+		979D9A7C1C4C9DB000EAE98D /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 979D9A7B1C4C9DB000EAE98D /* download.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		973958E11C46409200FAC570 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		973958E31C4758F100FAC570 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		979D9A791C489E8500EAE98D /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		979D9A7B1C4C9DB000EAE98D /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 		973778631C3FA04F002DE192 /* PersonalMovieS */ = {
 			isa = PBXGroup;
 			children = (
+				979D9A7B1C4C9DB000EAE98D /* download.png */,
 				973958DD1C452A4B00FAC570 /* Blank.png */,
 				973778641C3FA04F002DE192 /* AppDelegate.swift */,
 				973778661C3FA04F002DE192 /* SearchResultsViewController.swift */,
@@ -248,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				973958DE1C452A4B00FAC570 /* Blank.png in Resources */,
+				979D9A7C1C4C9DB000EAE98D /* download.png in Resources */,
 				9737786F1C3FA04F002DE192 /* LaunchScreen.storyboard in Resources */,
 				9737786C1C3FA04F002DE192 /* Assets.xcassets in Resources */,
 				9737786A1C3FA04F002DE192 /* Main.storyboard in Resources */,

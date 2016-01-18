@@ -50,7 +50,8 @@ class DetailsViewController: UIViewController, APIControllerProtocol {
         api.lookupSummary(self.movie!.id)
         
         // download button
-        downloadButton.addTarget(self,action:Selector("tapped"),forControlEvents:.TouchUpInside)
+        downloadButton.setImage(UIImage(named: "download"), forState: .Normal)
+        downloadButton.addTarget(self, action:Selector("tapped"), forControlEvents:.TouchUpInside)
         
     }
     

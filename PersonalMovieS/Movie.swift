@@ -22,7 +22,7 @@ struct Movie {
         self.rating = rating
         self.thumbnailImageURL = thumbnailImageURL
         self.largeImageURL = largeImageURL
-        self.year = year
+        self.year = year + "年"
     }
     
     static func moviesWithJSON(results: NSArray) -> [Movie] {

@@ -102,13 +102,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2kJ-0n-t8o">
-                                <rect key="frame" x="263" y="175" width="52" height="53"/>
-                                <state key="normal" title="Download"/>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1cM-WK-7bg">
                                 <rect key="frame" x="116" y="106" width="109" height="30"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -119,6 +115,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SfY-gG-Frc">
+                                <rect key="frame" x="116" y="169" width="97" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2NY-dz-M9r">
+                                <rect key="frame" x="116" y="145" width="97" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2kJ-0n-t8o">
+                                <rect key="frame" x="250" y="154" width="52" height="53"/>
+                                <state key="normal" title="Download"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -126,8 +136,10 @@
                         <outlet property="downloadButton" destination="2kJ-0n-t8o" id="hZv-lz-6pd"/>
                         <outlet property="editableTextField" destination="1cM-WK-7bg" id="OSJ-8Q-oIS"/>
                         <outlet property="movieCover" destination="Dyu-BM-HL4" id="ThW-8d-JCa"/>
+                        <outlet property="ratingTextField" destination="SfY-gG-Frc" id="gi5-Ws-JPh"/>
                         <outlet property="summaryText" destination="qxC-rW-ppk" id="JyP-4u-g9E"/>
                         <outlet property="titleLabel" destination="7b5-e1-Znj" id="aAu-hC-efg"/>
+                        <outlet property="yearTextField" destination="2NY-dz-M9r" id="1UL-rS-Og8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ArZ-Ou-9TG" userLabel="First Responder" sceneMemberID="firstResponder"/>

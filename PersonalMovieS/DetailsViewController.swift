@@ -13,6 +13,8 @@ class DetailsViewController: UIViewController, APIControllerProtocol {
     @IBOutlet weak var movieCover: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var editableTextField: UITextField!
+    @IBOutlet weak var ratingTextField: UITextField!
+    @IBOutlet weak var yearTextField: UITextField!
     @IBOutlet weak var summaryText: UITextView!
     @IBOutlet weak var downloadButton: UIButton!
 
@@ -35,11 +37,17 @@ class DetailsViewController: UIViewController, APIControllerProtocol {
         // movie cover
         movieCover.image = UIImage(data: NSData(contentsOfURL: NSURL(string: self.movie!.largeImageURL)!)!)
         
-        // movie summary
-        api.lookupSummary(self.movie!.id)
-        
         // editable movie title
         editableTextField.text = self.movie?.title
+        
+        // editable movie rating
+        ratingTextField.text = self.movie?.rating
+
+        // editable movie year
+        yearTextField.text = self.movie?.year
+        
+        // movie summary
+        api.lookupSummary(self.movie!.id)
         
         // download button
         downloadButton.addTarget(self,action:Selector("tapped"),forControlEvents:.TouchUpInside)

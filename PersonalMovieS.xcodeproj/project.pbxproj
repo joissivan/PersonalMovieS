@@ -20,6 +20,7 @@
 		973958E41C4758F100FAC570 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973958E31C4758F100FAC570 /* DetailsViewController.swift */; };
 		979D9A7A1C489E8500EAE98D /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D9A791C489E8500EAE98D /* Review.swift */; };
 		979D9A7C1C4C9DB000EAE98D /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 979D9A7B1C4C9DB000EAE98D /* download.png */; };
+		979D9A7E1C4E141800EAE98D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 979D9A7D1C4E141800EAE98D /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		973958E31C4758F100FAC570 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		979D9A791C489E8500EAE98D /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		979D9A7B1C4C9DB000EAE98D /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
+		979D9A7D1C4E141800EAE98D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		973778581C3FA04F002DE192 = {
 			isa = PBXGroup;
 			children = (
+				979D9A7D1C4E141800EAE98D /* Default-568h@2x.png */,
 				973778631C3FA04F002DE192 /* PersonalMovieS */,
 				973778781C3FA04F002DE192 /* PersonalMovieSTests */,
 				973778831C3FA04F002DE192 /* PersonalMovieSUITests */,
@@ -255,6 +258,7 @@
 				9737786F1C3FA04F002DE192 /* LaunchScreen.storyboard in Resources */,
 				9737786C1C3FA04F002DE192 /* Assets.xcassets in Resources */,
 				9737786A1C3FA04F002DE192 /* Main.storyboard in Resources */,
+				979D9A7E1C4E141800EAE98D /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

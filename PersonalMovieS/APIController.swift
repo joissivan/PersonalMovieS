@@ -84,7 +84,6 @@ class APIController {
         task.resume()
     }
 
-
 }
 
 protocol APIControllerProtocol {
